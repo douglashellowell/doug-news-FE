@@ -16,6 +16,10 @@ export const getSingleArticle = async article_id => {
   return [data.article, comments.data.comments];
 };
 
-export const insertArticle = async (title, body) => {
-  await axios.post(`${baseURL}/articles`);
+export const insertComment = async (article_id, comment) => {
+  const { data } = await axios.post(
+    `${baseURL}/articles/${article_id}/comments`,
+    comment
+  );
+  return data.comment;
 };

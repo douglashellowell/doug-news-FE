@@ -14,7 +14,14 @@ class ArticleView extends Component {
   }
 
   render() {
-    const { topic, title, author, created_at, body } = this.state.article;
+    const {
+      topic,
+      title,
+      author,
+      created_at,
+      body,
+      article_id
+    } = this.state.article;
     if (this.state.isLoading) return <p>Loading...</p>;
     return (
       <div className="article-view-container">
@@ -29,7 +36,7 @@ class ArticleView extends Component {
           {created_at}
         </p>
         <p>{body}</p>
-        <SubmitComment />
+        <SubmitComment article_id={article_id} />
         <p>Comments:</p>
 
         <ul>

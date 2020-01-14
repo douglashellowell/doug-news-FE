@@ -1,25 +1,17 @@
 import React, { Component } from "react";
+import { insertComment } from "../api";
 
 class SubmitComment extends Component {
   state = { titleInput: "", bodyInput: "", showForm: false };
   render() {
-    const { titleInput, bodyInput, showForm } = this.state;
+    const { bodyInput, showForm } = this.state;
     return (
       <>
         <button onClick={this.toggleShowForm}>{`${
           showForm ? "Cancel" : "Post comment"
         }`}</button>
         {showForm && (
-          <form onSubmit={this.submitArticle}>
-            <label>
-              Title:
-              <input
-                type="text"
-                name="titleInput"
-                onChange={this.handleChange}
-                value={titleInput}
-              />
-            </label>
+          <form onSubmit={this.SubmitComment}>
             <label>
               Body:
               <input
@@ -35,10 +27,20 @@ class SubmitComment extends Component {
       </>
     );
   }
+
   toggleShowForm = () => {
     this.setState(currentState => {
       return { showForm: !currentState.showForm };
     });
+  };
+
+  SubmitComment = event => {
+    event.preventDefault();
+    const { bodyInput } = this.state;
+    if (bodyInput) {
+      const { article_id } = this.props;
+      insertComment(article_id, { body: bodyInput });
+    }
   };
 
   handleChange = ({ target: { value, name } }) => {
