@@ -21,3 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+lorem.html
+
+/src/imgs
+/src/dummydata
+Plan.md
+react-project-checklist.md

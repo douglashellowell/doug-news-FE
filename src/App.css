@@ -1,38 +1,113 @@
-.App {
-  text-align: center;
+body {
+	background-color: grey;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+li,
+ul {
+	list-style: none;
+	list-style-position: inside;
+	padding: 0;
+	margin: 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#app-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgb(233, 233, 233);
+	padding: 0 10% 0 10%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#logged-in-user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+#logged-in-user:hover {
+	background-color: rgb(165, 161, 161);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#logged-in-user-pic {
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	background-color: black;
+	margin-left: 20px;
+}
+
+.nav-btn {
+	box-shadow: inset 0px 1px 0px 0px #ffffff;
+	background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color: #ffffff;
+	border-radius: 6px;
+	border: 1px solid #dcdcdc;
+	display: inline-block;
+	cursor: pointer;
+	color: #666666;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 6px 24px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #ffffff;
+}
+.nav-btn:hover {
+	background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color: #f6f6f6;
+}
+.nav-btn:active {
+	position: relative;
+	top: 1px;
+}
+
+#app-nav {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: rgb(192, 192, 192);
+	padding: 10px 10% 10px 10%;
+}
+
+#main-column {
+	background-color: white;
+	display: grid;
+	grid-template-columns: 3fr 4fr;
+	gap: 10px;
+	margin: auto;
+	/* height: 80vh; */
+	width: 80%;
+}
+
+#welcome-container {
+	margin: 10px;
+	padding: 100px;
+	border: 1px solid black;
+}
+
+.article-li {
+	border: 1px solid black;
+	margin: 2px;
+	display: grid;
+	border-radius: 0.5em;
+}
+
+.article-secondary-text {
+	color: grey;
+}
+
+.article-li-top {
+	background-color: grey;
+	width: 100%;
+	height: 20px;
+}
+
+.article-li-extras {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.comment-li {
+	border: 1px solid grey;
 }
