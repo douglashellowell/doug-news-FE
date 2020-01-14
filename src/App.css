@@ -72,8 +72,9 @@ ul {
 
 #main-column {
 	background-color: white;
-	display: grid;
+	/* display: grid;
 	grid-template-columns: 3fr 4fr;
+	grid-template-areas: 'left right'; */
 	gap: 10px;
 	margin: auto;
 	/* height: 80vh; */
@@ -87,6 +88,7 @@ ul {
 }
 
 .article-li {
+	grid-area: left;
 	border: 1px solid black;
 	margin: 2px;
 	display: grid;
@@ -110,4 +112,8 @@ ul {
 
 .comment-li {
 	border: 1px solid grey;
+}
+
+.article-view-container{
+	grid-area: right;
 }

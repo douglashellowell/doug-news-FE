@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { getArticles } from '../api';
-import articles from '../dummydata/articles.json';
 import ArticleCard from './ArticleCard';
-import { Router } from '@reach/router';
 
 class ArticlesList extends Component {
 	state = {
-		articles: articles.articles,
+		articles: [],
 		isLoading: true
 	};
 
@@ -19,11 +17,14 @@ class ArticlesList extends Component {
 		const { articles, isLoading } = this.state;
 		if (isLoading) return <p>Loading...</p>;
 		return (
+<>
 			<ul id="article-ul">
 				{articles.map(article => {
 					return <ArticleCard article={article} key={article.article_id} />;
 				})}
 			</ul>
+			{this.props.children}
+			</>
 		);
 	}
 
