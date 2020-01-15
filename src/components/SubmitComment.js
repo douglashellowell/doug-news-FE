@@ -39,7 +39,7 @@ class SubmitComment extends Component {
     const { bodyInput } = this.state;
     if (bodyInput) {
       const { article_id } = this.props;
-      insertComment(article_id, { body: bodyInput });
+      insertComment(article_id, { body: bodyInput }).then(comment => {});
     }
   };
 
