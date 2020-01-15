@@ -9,12 +9,16 @@ import ErrorPage from "./components/ErrorPage";
 import Topics from "./components/Topics";
 import UserContextProvider from "./contexts/UserContext";
 
+// window.addEventListener('resize', ()=> {
+
+// })
+
 function App() {
   return (
     <div className="App">
       <UserContextProvider>
         <Header />
-        <main id="main-column">
+        <main>
           <Router className="main-column">
             <Welcome path="/" />
             <ArticlesList path="/articles/">

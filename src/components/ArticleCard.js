@@ -12,6 +12,7 @@ const ArticleCard = props => {
     votes,
     article_id
   } = props.article;
+  const { user } = props;
   return (
     <li className="article-li">
       <div className="article-li-top">{topic}</div>
@@ -28,7 +29,12 @@ const ArticleCard = props => {
           {/* TODO: make util to translate date */}
         </p>
         <p>{comment_count} comments</p>
-        <Voter votes={votes} id={article_id} target={"articles"} />
+        <Voter
+          votes={votes}
+          id={article_id}
+          target={"articles"}
+          disabled={user === author}
+        />
       </div>
     </li>
   );

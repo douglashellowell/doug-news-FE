@@ -6,8 +6,10 @@ class Voter extends Component {
     castVote: 0
   };
   render() {
-    const { target, id, votes } = this.props;
+    const { target, id, votes, disabled } = this.props;
     const { castVote } = this.state;
+    console.log("disabled", disabled);
+    if (disabled) return null;
     return (
       <div className="voter-container">
         <button onClick={() => this.castVote(1)}>^</button>

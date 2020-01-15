@@ -70,7 +70,7 @@ ul {
   padding: 10px 10% 10px 10%;
 }
 
-#main-column {
+.main-column {
   background-color: white;
   display: grid;
   grid-template-columns: 3fr 4fr;
@@ -78,7 +78,7 @@ ul {
   gap: 10px;
   margin: auto;
   /* height: 80vh; */
-  width: 80%;
+  width: 75rem;
 }
 
 #welcome-container {
@@ -116,4 +116,19 @@ ul {
 
 .article-view-container {
   grid-area: right;
+}
+
+@media only screen and (max-width: 75rem) {
+  .main-column {
+    display: block;
+  }
+
+  .article-list {
+    position: absolute;
+  }
+
+  .article-view-container {
+    position: absolute;
+    z-index: 4;
+  }
 }
