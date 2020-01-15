@@ -22,6 +22,13 @@ class ArticlesList extends Component {
     return (
       <>
         <div className="article-list">
+          <select
+            onChange={({ target: { value } }) => this.fetchArticles(value)}
+          >
+            <option>Newest</option>
+            <option>Votes</option>
+            <option>Comments</option>
+          </select>
           <ul id="article-ul">
             {articles.map(article => {
               return (
@@ -39,7 +46,8 @@ class ArticlesList extends Component {
     );
   }
 
-  fetchArticles = () => {
+  fetchArticles = order => {
+    console.log(order);
     getArticles().then(articles => {
       this.setState({ articles, isLoading: false });
     });

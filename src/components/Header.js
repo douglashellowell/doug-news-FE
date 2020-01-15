@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <UserContext.Consumer>
       {context => {
-        const { user } = context;
+        const { user, setLoggedInUser } = context;
         return (
           <>
             <header id="app-header">
@@ -15,6 +15,9 @@ const Header = () => {
                 <h1 id="header-logo">doug-news</h1>
               </Link>
               <section id="logged-in-user">
+                <button onClick={() => setLoggedInUser("weegembump")}>
+                  log in as weegembump
+                </button>
                 <p>{user}</p>
                 <div id="logged-in-user-pic"></div>
               </section>

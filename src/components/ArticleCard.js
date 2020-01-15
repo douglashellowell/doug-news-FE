@@ -15,12 +15,28 @@ const ArticleCard = props => {
 
   const { user } = props;
   return (
-    <li className="article-li">
-      <div className="article-li-top">{topic}</div>
-      <Link to={`/articles/${article_id}`}>
-        <h3 className="article-li-title">{title}</h3>
+    <li className="article-card">
+      <div className="article-card-sidebar">
+        <div className="article-card-votes">
+          <Voter
+            votes={votes}
+            id={article_id}
+            target={"articles"}
+            disabled={user === author}
+          />
+        </div>
+        <div>
+          <i class="fas fa-comments article-card-comments"></i>
+          <p>{comment_count}</p>
+        </div>
+      </div>
+
+      <div className="article-card-topic">{topic}</div>
+      <Link to={`/articles/${article_id}`} className="article-card-title">
+        <h3>{title}</h3>
       </Link>
-      <div className="article-li-extras">
+
+      <div className="article-card-posted-info">
         <p>
           <span className="article-secondary-text">Created by:</span> {author}
         </p>
@@ -29,13 +45,6 @@ const ArticleCard = props => {
           {created_at}
           {/* TODO: make util to translate date */}
         </p>
-        <p>{comment_count} comments</p>
-        <Voter
-          votes={votes}
-          id={article_id}
-          target={"articles"}
-          disabled={user === author}
-        />
       </div>
     </li>
   );

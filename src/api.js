@@ -29,10 +29,10 @@ export const getTopics = async () => {
 };
 
 export const patchVote = async (target, id, vote) => {
-  const response = await apiRequest.patch(`/${target}/${id}`, {
+  const { status } = await apiRequest.patch(`/${target}/${id}`, {
     inc_votes: vote
   });
-  return response;
+  return status;
 };
 
 export const getArticleComments = async article_id => {

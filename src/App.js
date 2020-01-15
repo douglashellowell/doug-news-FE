@@ -8,6 +8,7 @@ import ArticleView from "./components/ArticleView";
 import ErrorPage from "./components/ErrorPage";
 import Topics from "./components/Topics";
 import UserContextProvider from "./contexts/UserContext";
+import ArticleStats from "./ArticleStats";
 
 export function useWindowSize() {
   function getSize() {
@@ -42,6 +43,7 @@ function App() {
             <Welcome path="/" />
             <ArticlesList path="/articles/">
               <ArticleView path=":article_id" />
+              <ArticleStats default />
             </ArticlesList>
             <Topics path="/topics" />
             <ErrorPage default />

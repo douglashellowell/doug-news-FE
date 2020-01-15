@@ -2,6 +2,7 @@ body {
   background-color: rgb(170, 202, 250);
   height: 100vh;
   overflow-y: scroll;
+  /* font-family: "Ibarra Real Nova", serif; */
 }
 
 li,
@@ -87,6 +88,7 @@ ul {
   margin: 10px;
   padding: 100px;
   border: 1px solid black;
+  grid-area: 1/1/2/3;
 }
 
 .article-list {
@@ -94,29 +96,53 @@ ul {
   overflow: scroll;
   height: 100vh;
 }
-.article-li {
+.article-card {
   border: 1px solid black;
-  margin: 2px;
+  margin: 1rem;
   display: grid;
+  grid-template-columns: 3rem 1fr;
+  grid-template-rows: 1rem 1fr 4rem;
+  grid-template-areas:
+    "sidebar topic"
+    "sidebar title"
+    "sidebar info";
   border-radius: 0.5em;
+  /* padding: 0.5em; */
 }
 
 .article-secondary-text {
   color: grey;
 }
 
-.article-li-top {
-  background-color: grey;
+.article-card-topic {
+  background-color: rgb(255, 176, 176);
+  grid-area: topic;
   width: 100%;
   height: 20px;
 }
 
-.article-li-extras {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+.article-card-sidebar {
+  grid-area: sidebar;
+  background-color: #ebebeb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.comment-li {
+.article-card-title {
+  grid-area: title;
+}
+
+.article-card-posted-info {
+  grid-area: info;
+  line-height: 0.3rem;
+}
+
+.article-card-posted-info p {
+}
+
+.comment-card {
   border: 1px solid grey;
 }
 
@@ -124,6 +150,11 @@ ul {
   grid-area: right;
   overflow-y: scroll;
   height: 100vh;
+}
+
+.article-view-title {
+  font-family: "Ibarra Real Nova", serif;
+  font-size: 3rem;
 }
 
 #topic-list {
@@ -146,4 +177,31 @@ ul {
   .main-column {
     display: block;
   }
+}
+
+.voter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.fa-caret-up {
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.fa-caret-down {
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.fa-caret-up:hover {
+  cursor: pointer;
+  background-color: rgb(188, 231, 188);
+}
+.fa-caret-down:hover {
+  cursor: pointer;
+  background-color: rgb(231, 195, 188);
 }

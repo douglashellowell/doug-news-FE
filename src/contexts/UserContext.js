@@ -8,11 +8,17 @@ class UserContextProvider extends Component {
   };
   render() {
     return (
-      <UserContext.Provider value={{ ...this.state }}>
+      <UserContext.Provider
+        value={{ ...this.state, setLoggedInUser: this.setLoggedInUser }}
+      >
         {this.props.children}
       </UserContext.Provider>
     );
   }
+
+  setLoggedInUser = username => {
+    this.setState({ user: username });
+  };
 }
 
 export default UserContextProvider;

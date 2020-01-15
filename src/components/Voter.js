@@ -11,9 +11,9 @@ class Voter extends Component {
     if (disabled) return null;
     return (
       <div className="voter-container">
-        <button onClick={() => this.castVote(1)}>^</button>
+        <i className="fas fa-caret-up" onClick={() => this.castVote(1)}></i>
         <p>{votes + castVote}</p>
-        <button onClick={() => this.castVote(-1)}>v</button>
+        <i className="fas fa-caret-down" onClick={() => this.castVote(-1)}></i>
       </div>
     );
   }
@@ -24,10 +24,11 @@ class Voter extends Component {
     api
       .patchVote(target, id, vote)
       .then(response => {
-        console.log("");
+        console.log(response);
       })
       .catch(err => {
         console.log(err);
+        this.setState({ castVote: 0 });
       });
   };
 }

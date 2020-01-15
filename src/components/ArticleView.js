@@ -36,7 +36,7 @@ class ArticleView extends Component {
           <button>back</button>
         </Link>
         <p>{topic}</p>
-        <h2>{title}</h2>
+        <h2 className="article-view-title">{title}</h2>
         <p>
           <span className="article-secondary-text">By: </span>
           {author}

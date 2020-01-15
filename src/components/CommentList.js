@@ -13,12 +13,19 @@ class CommentList extends Component {
     this.fetchComments();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.article_id !== this.props.article_id) {
+      console.log("updating!");
+      this.fetchComments();
+    }
+  }
+
   render() {
     const { comments } = this.state;
     const { article_id } = this.props;
     return (
       <>
-        <SubmitComment pushArticle={this.pushArticle} article_id={article_id} />
+        <SubmitComment pushComment={this.pushComment} article_id={article_id} />
         <p>Comments:</p>
         <ul>
           {comments.map(comment => {
@@ -42,8 +49,10 @@ class CommentList extends Component {
       </>
     );
   }
-  pushArticle = res => {
-    console.log("yes!", res);
+  pushComment = newComment => {
+    this.setState(currentState => {
+      return { comments: [newComment, ...currentState.comments] };
+    });
   };
 
   fetchComments = () => {

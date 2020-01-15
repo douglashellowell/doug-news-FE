@@ -4,36 +4,30 @@ import { UserContext } from "../contexts/UserContext";
 
 class SubmitComment extends Component {
   state = { titleInput: "", bodyInput: "", showForm: false };
-
+  static contextType = UserContext;
   render() {
     const { bodyInput, showForm } = this.state;
+    const { user } = this.context;
     return (
-      <UserContext.Consumer>
-        {context => {
-          const { user } = context;
-          return (
-            <>
-              <button onClick={this.toggleShowForm}>{`${
-                showForm ? "Cancel" : `Post comment as ${user}`
-              }`}</button>
-              {showForm && (
-                <form onSubmit={this.SubmitComment}>
-                  <label>
-                    Body:
-                    <input
-                      type="text"
-                      name="bodyInput"
-                      onChange={this.handleChange}
-                      value={bodyInput}
-                    />
-                  </label>
-                  <button type="submit">Submit</button>
-                </form>
-              )}
-            </>
-          );
-        }}
-      </UserContext.Consumer>
+      <>
+        <button onClick={this.toggleShowForm}>{`${
+          showForm ? "Cancel" : `Post comment as ${user}`
+        }`}</button>
+        {showForm && (
+          <form onSubmit={this.SubmitComment}>
+            <label>
+              Body:
+              <input
+                type="text"
+                name="bodyInput"
+                onChange={this.handleChange}
+                value={bodyInput}
+              />
+            </label>
+            <button type="submit">Submit</button>
+          </form>
+        )}
+      </>
     );
   }
 
@@ -46,11 +40,13 @@ class SubmitComment extends Component {
   SubmitComment = event => {
     event.preventDefault();
     const { bodyInput } = this.state;
+    const { user } = this.context;
     if (bodyInput) {
+      this.setState({ bodyInput: "" });
       const { article_id } = this.props;
-      insertComment(article_id, { body: bodyInput })
+      insertComment(article_id, { username: user, body: bodyInput })
         .then(comment => {
-          this.props.pushArticle(comment);
+          this.props.pushComment(comment);
         })
         .catch(err => {
           console.dir(err);

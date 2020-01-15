@@ -18,7 +18,7 @@ class Topics extends Component {
       <ul id="topic-list">
         {topics.map(topic => {
           return (
-            <li className="topic-card">
+            <li className="topic-card" key={topic.slug}>
               <h3>{topic.slug}</h3>
               <p>{topic.description}</p>
             </li>
