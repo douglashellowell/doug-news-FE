@@ -12,6 +12,7 @@ const ArticleCard = props => {
     votes,
     article_id
   } = props.article;
+
   const { user } = props;
   return (
     <li className="article-li">

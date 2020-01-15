@@ -9,10 +9,10 @@ export const getArticles = async () => {
 };
 
 export const getSingleArticle = async article_id => {
-  console.log("article_id: >>>>", article_id);
-  const { data } = await apiRequest.get(`/articles/${article_id}`);
-  const comments = await apiRequest.get(`/articles/${article_id}/comments`);
-  return [data.article, comments.data.comments];
+  const {
+    data: { article }
+  } = await apiRequest.get(`/articles/${article_id}`);
+  return article;
 };
 
 export const insertComment = async (article_id, comment) => {
@@ -33,4 +33,11 @@ export const patchVote = async (target, id, vote) => {
     inc_votes: vote
   });
   return response;
+};
+
+export const getArticleComments = async article_id => {
+  const {
+    data: { comments }
+  } = await apiRequest.get(`/articles/${article_id}/comments`);
+  return comments;
 };

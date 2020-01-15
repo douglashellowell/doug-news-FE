@@ -21,17 +21,19 @@ class ArticlesList extends Component {
     if (isLoading) return <p>Loading...</p>;
     return (
       <>
-        <ul id="article-ul">
-          {articles.map(article => {
-            return (
-              <ArticleCard
-                article={article}
-                user={user}
-                key={article.article_id}
-              />
-            );
-          })}
-        </ul>
+        <div className="article-list">
+          <ul id="article-ul">
+            {articles.map(article => {
+              return (
+                <ArticleCard
+                  article={article}
+                  user={user}
+                  key={article.article_id}
+                />
+              );
+            })}
+          </ul>
+        </div>
         {this.props.children}
       </>
     );

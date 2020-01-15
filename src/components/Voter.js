@@ -8,7 +8,6 @@ class Voter extends Component {
   render() {
     const { target, id, votes, disabled } = this.props;
     const { castVote } = this.state;
-    console.log("disabled", disabled);
     if (disabled) return null;
     return (
       <div className="voter-container">
@@ -25,7 +24,7 @@ class Voter extends Component {
     api
       .patchVote(target, id, vote)
       .then(response => {
-        console.log(response);
+        console.log("");
       })
       .catch(err => {
         console.log(err);

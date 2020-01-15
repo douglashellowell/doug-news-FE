@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { getSingleArticle } from "../api";
-import SubmitComment from "./SubmitComment";
 import { Link } from "@reach/router";
+import CommentList from "./CommentList";
+import SubmitComment from "./SubmitComment";
 
 class ArticleView extends Component {
   state = {
@@ -16,9 +17,7 @@ class ArticleView extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps);
     if (prevProps.article_id !== this.props.article_id) {
-      console.log("updating!");
       this.fetchArticleWithComments();
     }
   }
@@ -27,7 +26,7 @@ class ArticleView extends Component {
     const {
       article: { topic, title, author, created_at, body, article_id },
       isLoading,
-      mobile,
+      mobile, // <<<< for resizing
       comments
     } = this.state;
     if (isLoading) return <p>Loading...</p>;
@@ -47,39 +46,15 @@ class ArticleView extends Component {
           {created_at}
         </p>
         <p>{body}</p>
-        <SubmitComment article_id={article_id} />
-        <p>Comments:</p>
-
-        <ul>
-          {comments.map(comment => {
-            const { body, author, created_at, votes, comment_id } = comment;
-            return (
-              <li className="comment-li" key={comment_id}>
-                <p>{body}</p>
-                <p>
-                  <span className="article-secondary-text">by </span>
-                  {author}
-                </p>
-                <p>
-                  <span className="article-secondary-text">at:</span>
-                  {created_at}
-                </p>
-                <p>votes: {votes}</p>
-              </li>
-            );
-          })}
-        </ul>
+        <CommentList article_id={article_id} />
       </div>
     );
   }
 
   fetchArticleWithComments = () => {
-    console.log("fetching article");
     getSingleArticle(this.props.article_id)
-      .then(([article, comments]) => {
-        console.log(article);
-        console.log(comments);
-        this.setState({ article, comments, isLoading: false }, () => {});
+      .then(article => {
+        this.setState({ article, isLoading: false }, () => {});
       })
       .catch(err => {
         console.dir(err);

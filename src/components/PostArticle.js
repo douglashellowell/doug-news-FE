@@ -47,7 +47,6 @@ class PostArticle extends Component {
   };
 
   handleChange = ({ target: { value, name } }) => {
-    console.log(name, value);
     this.setState({ [name]: value });
   };
 
