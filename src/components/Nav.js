@@ -7,11 +7,9 @@ const Nav = () => {
       <Link to="/articles">
         <button className="nav-btn">Articles</button>
       </Link>
-      {/* <Link to='/post'>
-				<button className="nav-btn" id="post-article">
-					Post Article
-				</button>
-			</Link> */}
+      <Link to="/topics">
+        <button className="nav-btn">Topics</button>
+      </Link>
     </nav>
   );
 };

@@ -6,6 +6,7 @@ import Welcome from "./components/Welcome";
 import ArticlesList from "./components/ArticlesList";
 import ArticleView from "./components/ArticleView";
 import ErrorPage from "./components/ErrorPage";
+import Topics from "./components/Topics";
 // import PostArticle from "./components/PostArticle";
 
 function App() {
@@ -17,9 +18,8 @@ function App() {
           <Welcome path="/" />
           <ArticlesList path="/articles/" />
           <ArticleView path="/articles/:article_id" />
-
+          <Topics path="/topics" />
           <ErrorPage default />
-          {/* <PostArticle path='/post'/> */}
         </Router>
       </main>
     </div>

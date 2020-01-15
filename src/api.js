@@ -23,3 +23,8 @@ export const insertComment = async (article_id, comment) => {
   );
   return data.comment;
 };
+
+export const getTopics = async () => {
+  const { data } = await axios.get(`${baseURL}/topics`);
+  return data.topics;
+};
