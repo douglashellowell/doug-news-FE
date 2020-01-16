@@ -5,12 +5,12 @@ const Nav = () => {
   return (
     <nav id="app-nav">
       <Link to="/articles">
-        <button className="nav-btn">All Articles</button>
+        <button className="nav-btn">What's New</button>
       </Link>
-      <Link to="/topics">
+      <Link to="/articles/topics">
         <button className="nav-btn">Topics</button>
       </Link>
-      <Link to="/users">
+      <Link to="/articles/users">
         <button className="nav-btn">Users</button>
       </Link>
     </nav>

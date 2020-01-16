@@ -1,37 +1,46 @@
 import React, { Component } from "react";
 import { getTopics } from "../api";
+import BackButton from "./BackButton";
 
 class Topics extends Component {
   state = {
-    topics: []
+    topics: [],
+    isLoading: true
   };
 
   componentDidMount() {
-    console.log("mounting...");
     this.fetchAllTopics();
   }
 
   render() {
-    console.log("rendering...");
-    const { topics } = this.state;
+    const { topics, isLoading } = this.state;
+    const { setFilter } = this.props;
+    if (isLoading) return <p>Loading.....</p>;
     return (
-      <ul id="topic-list">
-        {topics.map(topic => {
-          return (
-            <li className="topic-card" key={topic.slug}>
-              <h3>{topic.slug}</h3>
-              <p>{topic.description}</p>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="topic-list-container">
+        <BackButton />
+        <ul id="topic-list">
+          {topics.map(topic => {
+            return (
+              <li
+                className="topic-card"
+                key={topic.slug}
+                onClick={() => setFilter(topic.slug)}
+              >
+                <h3>{topic.slug}</h3>
+                <p>{topic.description}</p>
+                <p>there are {topic.count} articles for this topic</p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     );
   }
 
   fetchAllTopics = () => {
-    console.log("fetching...");
     getTopics().then(topics => {
-      this.setState({ topics });
+      this.setState({ topics, isLoading: false });
     });
   };
 }

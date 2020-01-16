@@ -139,9 +139,6 @@ ul {
   line-height: 0.3rem;
 }
 
-.article-card-posted-info p {
-}
-
 .comment-card {
   border: 1px solid grey;
 }
@@ -204,4 +201,16 @@ ul {
 .fa-caret-down:hover {
   cursor: pointer;
   background-color: rgb(231, 195, 188);
+}
+
+.user-card {
+  border: 1px solid black;
+  width: 90%;
+  margin: 10px;
+  padding: 1rem;
+}
+
+#submit-comment-field {
+  width: 80%;
+  height: 4rem;
 }

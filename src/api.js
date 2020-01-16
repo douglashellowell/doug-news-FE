@@ -3,8 +3,10 @@ const apiRequest = axios.create({
   baseURL: "https://doug-news.herokuapp.com/api"
 });
 
-export const getArticles = async () => {
-  const { data } = await apiRequest.get(`/articles`);
+export const getArticles = async (order, filter) => {
+  const { data } = await apiRequest.get(`/articles`, {
+    params: { sort_by: order, topic: filter }
+  });
   return data.articles;
 };
 
@@ -23,34 +25,25 @@ export const insertComment = async (article_id, comment) => {
   return data.comment;
 };
 
-export const getTopics = async () => {
-  const getTopicArticleCount = async topic => {
-    const {
-      data: { articles }
-    } = await apiRequest.get("/articles", {
-      params: { topic: topic.slug }
+export const getTopics = () => {
+  return apiRequest
+    .get("/topics")
+    .then(({ data: { topics } }) => {
+      return Promise.all(
+        topics.map(topic => {
+          return apiRequest
+            .get("/articles", {
+              params: { topic: topic.slug }
+            })
+            .then(({ data: { articles } }) => {
+              return { ...topic, count: articles.length };
+            });
+        })
+      );
+    })
+    .then(topicsWithCount => {
+      return topicsWithCount;
     });
-    console.log(topic.slug, articles.length);
-    return articles.length;
-  };
-  const {
-    data: { topics }
-  } = await apiRequest.get(`/topics`);
-  console.log(getTopicArticleCount(topics[0]));
-  const topicAndCount = topics.map(async topic => {
-    return { ...topic, count: await getTopicArticleCount(topic) };
-  });
-  // // const topicAndCount = topics.map(topic => {
-  // //   return apiRequest
-  // //     .get("/articles", { params: { topic: topic.slug } })
-  // //     .then(({ articles }) => {
-  // //       console.log(topic, articles.length);
-  // //       return { topic, count: articles.length };
-  // //     })
-  // //     .catch(console.dir);
-  // // });
-  // // console.log(">>>>", topicAndCount);
-  return topicAndCount;
 };
 
 export const patchVote = async (target, id, vote) => {
@@ -65,4 +58,16 @@ export const getArticleComments = async article_id => {
     data: { comments }
   } = await apiRequest.get(`/articles/${article_id}/comments`);
   return comments;
+};
+
+export const deleteById = async (id, target) => {
+  const { status } = await apiRequest.delete(`/${target}/${id}`);
+  return status;
+};
+
+export const getAllUsers = async () => {
+  const {
+    data: { users }
+  } = await apiRequest.get("/users");
+  return users;
 };

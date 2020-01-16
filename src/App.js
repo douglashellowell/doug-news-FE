@@ -4,11 +4,8 @@ import "./App.css";
 import Header from "./components/Header";
 import Welcome from "./components/Welcome";
 import ArticlesList from "./components/ArticlesList";
-import ArticleView from "./components/ArticleView";
 import ErrorPage from "./components/ErrorPage";
-import Topics from "./components/Topics";
 import UserContextProvider from "./contexts/UserContext";
-import ArticleStats from "./ArticleStats";
 
 export function useWindowSize() {
   function getSize() {
@@ -34,6 +31,7 @@ export function useWindowSize() {
 }
 
 function App() {
+  console.log("whole app rendering...!");
   return (
     <div className="App">
       <UserContextProvider>
@@ -41,11 +39,7 @@ function App() {
         <main>
           <Router className="main-column">
             <Welcome path="/" />
-            <ArticlesList path="/articles/">
-              <ArticleView path=":article_id" />
-              <ArticleStats default />
-            </ArticlesList>
-            <Topics path="/topics" />
+            <ArticlesList path="/articles/*" />
             <ErrorPage default />
           </Router>
         </main>

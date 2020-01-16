@@ -26,7 +26,7 @@ const ArticleCard = props => {
           />
         </div>
         <div>
-          <i class="fas fa-comments article-card-comments"></i>
+          <i className="fas fa-comments article-card-comments"></i>
           <p>{comment_count}</p>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { getSingleArticle } from "../api";
-import { Link } from "@reach/router";
 import CommentList from "./CommentList";
 import SubmitComment from "./SubmitComment";
+import BackButton from "./BackButton";
 
 class ArticleView extends Component {
   state = {
@@ -32,9 +32,7 @@ class ArticleView extends Component {
     if (isLoading) return <p>Loading...</p>;
     return (
       <div className="article-view-container">
-        <Link to="/articles">
-          <button>back</button>
-        </Link>
+        <BackButton />
         <p>{topic}</p>
         <h2 className="article-view-title">{title}</h2>
         <p>

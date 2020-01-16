@@ -22,6 +22,7 @@ class SubmitComment extends Component {
                 name="bodyInput"
                 onChange={this.handleChange}
                 value={bodyInput}
+                id="submit-comment-field"
               />
             </label>
             <button type="submit">Submit</button>
@@ -55,7 +56,6 @@ class SubmitComment extends Component {
   };
 
   handleChange = ({ target: { value, name } }) => {
-    console.log(name, value);
     this.setState({ [name]: value });
   };
 }

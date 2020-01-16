@@ -1,13 +1,17 @@
 import SubmitComment from "./SubmitComment";
-import { getArticleComments } from "../api";
+import { getArticleComments, deleteById } from "../api";
 import Voter from "./Voter";
+import { UserContext } from "../contexts/UserContext";
 
 import React, { Component } from "react";
+import DeleteButton from "./DeleteButton";
+import CommentCard from "./CommentCard";
 
 class CommentList extends Component {
   state = {
     comments: []
   };
+  static contextType = UserContext;
 
   componentDidMount() {
     this.fetchComments();
@@ -23,27 +27,14 @@ class CommentList extends Component {
   render() {
     const { comments } = this.state;
     const { article_id } = this.props;
+    const { user } = this.context;
     return (
       <>
         <SubmitComment pushComment={this.pushComment} article_id={article_id} />
         <p>Comments:</p>
         <ul>
-          {comments.map(comment => {
-            const { body, author, created_at, votes, comment_id } = comment;
-            return (
-              <li className="comment-li" key={comment_id}>
-                <p>{body}</p>
-                <p>
-                  <span className="article-secondary-text">by </span>
-                  {author}
-                </p>
-                <p>
-                  <span className="article-secondary-text">at:</span>
-                  {created_at}
-                </p>
-                <Voter votes={votes} id={comment_id} target={"comments"} />
-              </li>
-            );
+          {comments.map((comment, index) => {
+            return <CommentCard comment={comment} index={index} user={user} />;
           })}
         </ul>
       </>
@@ -58,6 +49,17 @@ class CommentList extends Component {
   fetchComments = () => {
     getArticleComments(this.props.article_id).then(comments => {
       this.setState({ comments });
+    });
+  };
+
+  removeComment = (comment_id, target, index) => {
+    deleteById(comment_id, target).then(response => {
+      if (response === 204) {
+        this.setState(currentState => {
+          currentState.comments.splice(index, 1);
+          return { comments: currentState.comments };
+        });
+      }
     });
   };
 }
