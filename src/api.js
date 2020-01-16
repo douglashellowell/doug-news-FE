@@ -24,8 +24,33 @@ export const insertComment = async (article_id, comment) => {
 };
 
 export const getTopics = async () => {
-  const { data } = await apiRequest.get(`/topics`);
-  return data.topics;
+  const getTopicArticleCount = async topic => {
+    const {
+      data: { articles }
+    } = await apiRequest.get("/articles", {
+      params: { topic: topic.slug }
+    });
+    console.log(topic.slug, articles.length);
+    return articles.length;
+  };
+  const {
+    data: { topics }
+  } = await apiRequest.get(`/topics`);
+  console.log(getTopicArticleCount(topics[0]));
+  const topicAndCount = topics.map(async topic => {
+    return { ...topic, count: await getTopicArticleCount(topic) };
+  });
+  // // const topicAndCount = topics.map(topic => {
+  // //   return apiRequest
+  // //     .get("/articles", { params: { topic: topic.slug } })
+  // //     .then(({ articles }) => {
+  // //       console.log(topic, articles.length);
+  // //       return { topic, count: articles.length };
+  // //     })
+  // //     .catch(console.dir);
+  // // });
+  // // console.log(">>>>", topicAndCount);
+  return topicAndCount;
 };
 
 export const patchVote = async (target, id, vote) => {
