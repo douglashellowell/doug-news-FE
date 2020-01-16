@@ -25,27 +25,35 @@ class ArticleView extends Component {
   render() {
     const {
       article: { topic, title, author, created_at, body, article_id },
-      isLoading,
-      mobile, // <<<< for resizing
-      comments
+      isLoading
     } = this.state;
+    const { mobileView } = this.props;
+    if (isNaN(+this.props.article_id)) return <p>Needs a number!</p>;
     if (isLoading) return <p>Loading...</p>;
     return (
-      <div className="article-view-container">
-        <BackButton />
-        <p>{topic}</p>
-        <h2 className="article-view-title">{title}</h2>
-        <p>
-          <span className="article-secondary-text">By: </span>
-          {author}
-        </p>
-        <p>
-          <span className="article-secondary-text">at</span>
-          {created_at}
-        </p>
-        <p>{body}</p>
-        <CommentList article_id={article_id} />
-      </div>
+      <>
+        <div
+          className={`article-view-container${
+            mobileView ? " article-view-mobile" : ""
+          }`}
+        >
+          <BackButton />
+          <p>{topic}</p>
+          <h2 className="article-view-title">{title}</h2>
+          <div className="article-info">
+            <p>
+              <span className="article-secondary-text">By: </span>
+              {author}
+            </p>
+            <p>
+              <span className="article-secondary-text">at</span>
+              {created_at}
+            </p>
+          </div>
+          <p className="article-body">{body}</p>
+          <CommentList article_id={article_id} />
+        </div>
+      </>
     );
   }
 

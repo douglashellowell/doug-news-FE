@@ -1,29 +1,31 @@
 import React from "react";
 import Voter from "./Voter";
 
-const CommentCard = ({ comment, index, user }) => {
+const CommentCard = ({ comment, index, user, removeComment }) => {
   const { body, author, created_at, votes, comment_id } = comment;
-
+  console.log(removeComment);
   return (
-    <li className="comment-li" key={comment_id}>
-      <p>{body}</p>
-      <p>
-        <span className="article-secondary-text">by </span>
-        {author}
-      </p>
-      <p>
-        <span className="article-secondary-text">at:</span>
-        {created_at}
-      </p>
+    <li className="comment-card" key={comment_id}>
+      <div className="comment-sidebar">
+        <div className="comment-user-img" />
+        <Voter votes={votes} id={comment_id} target={"comments"} />
+      </div>
+      <div className="comment-user">
+        <p>
+          <span className="article-secondary-text">by </span>
+          {author}
+        </p>
+        <p>
+          <span className="article-secondary-text">at:</span>
+          {created_at}
+        </p>
+      </div>
+      <p className="comment-body">{body}</p>
       {user === author && (
-        // <DeleteButton id={comment_id} target={"comments"} onClick={}/>
-        <button
-          onClick={() => this.removeComment(comment_id, "comments", index)}
-        >
+        <button onClick={() => removeComment(comment_id, "comments", index)}>
           delete
         </button>
       )}
-      <Voter votes={votes} id={comment_id} target={"comments"} />
     </li>
   );
 };

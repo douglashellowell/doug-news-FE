@@ -4,9 +4,13 @@ const UserCard = props => {
   const { username, name, avatar_url } = props.user;
   return (
     <li className="user-card">
-      <h4>{username}</h4>
-      <p>{name}</p>
-      <img src={avatar_url} alt={`${username}s profile picture`} />
+      <img
+        src={avatar_url}
+        alt={`${username}s profile picture`}
+        className="profile-pic-med"
+      />
+      <h4 className="user-card-username">{username}</h4>
+      <p className="user-card-name">{name}</p>
     </li>
   );
 };

@@ -3,9 +3,9 @@ const apiRequest = axios.create({
   baseURL: "https://doug-news.herokuapp.com/api"
 });
 
-export const getArticles = async (order, filter) => {
+export const getArticles = async (order, category, filter) => {
   const { data } = await apiRequest.get(`/articles`, {
-    params: { sort_by: order, topic: filter }
+    params: { sort_by: order, [category]: filter }
   });
   return data.articles;
 };

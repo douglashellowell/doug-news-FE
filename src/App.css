@@ -13,6 +13,10 @@ ul {
   margin: 0px;
 }
 
+a {
+  color: black;
+}
+
 #app-header {
   display: flex;
   justify-content: space-between;
@@ -76,12 +80,12 @@ ul {
 .main-column {
   background-color: white;
   display: grid;
-  grid-template-columns: 3fr 4fr;
+  grid-template-columns: 3fr 6fr;
   grid-template-areas: "left right";
   gap: 10px;
   margin: auto;
   /* height: 80vh; */
-  width: 75rem;
+  width: 100rem;
 }
 
 #welcome-container {
@@ -95,6 +99,7 @@ ul {
   grid-area: left;
   overflow: scroll;
   height: 100vh;
+  min-width: 370px;
 }
 .article-card {
   border: 1px solid black;
@@ -107,7 +112,6 @@ ul {
     "sidebar title"
     "sidebar info";
   border-radius: 0.5em;
-  /* padding: 0.5em; */
 }
 
 .article-secondary-text {
@@ -141,12 +145,46 @@ ul {
 
 .comment-card {
   border: 1px solid grey;
+  margin: 0.5rem;
+  display: grid;
+  grid-template-columns: 3em 1fr;
+  grid-template-rows: 3em 1fr;
+  grid-template-areas:
+    "sidebar username"
+    "sidebar body";
+}
+.comment-body {
+  grid-area: body;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+.comment-user {
+  grid-area: username;
+}
+.comment-sidebar {
+  grid-area: sidebar;
+  background-color: rgb(253, 247, 211);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+.comment-user-img {
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  background-color: rgb(121, 165, 121);
 }
 
 .article-view-container {
   grid-area: right;
   overflow-y: scroll;
   height: 100vh;
+  padding: 1rem;
+}
+.article-body {
+  padding: 2rem;
+  line-height: 2rem;
 }
 
 .article-view-title {
@@ -155,32 +193,31 @@ ul {
 }
 
 #topic-list {
-  background-color: rgb(161, 138, 184);
-  grid-area: 1/1/2/3;
+  background-color: rgb(255, 255, 255);
+  /* grid-area: 1/1/2/3; */
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   padding: 2rem;
+  flex-wrap: wrap;
 }
 
 .topic-card {
   border: 1px black solid;
+  border-radius: 0.5em;
   flex-grow: 1;
   margin: 10px;
   padding: 1rem;
-}
-
-@media only screen and (max-width: 75rem) {
-  .main-column {
-    display: block;
-  }
+  min-width: 10rem;
 }
 
 .voter-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-rows: repeat(2, 30px);
   text-align: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
 .fa-caret-up {
@@ -208,9 +245,62 @@ ul {
   width: 90%;
   margin: 10px;
   padding: 1rem;
+  line-height: 0.3rem;
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+}
+.user-card img {
+  grid-column: 1;
+}
+
+.profile-pic-med {
+  height: 3rem;
+  width: 3rem;
 }
 
 #submit-comment-field {
   width: 80%;
   height: 4rem;
+}
+
+.article-view-mobile {
+  background-color: antiquewhite;
+  position: absolute;
+  z-index: 1;
+  left: 0px;
+}
+.topic-list-mobile {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  z-index: 1;
+  left: 0px;
+  height: 100%;
+}
+
+.article-list-mobile {
+  background-color: rgb(232, 255, 247);
+  position: absolute;
+  z-index: 0;
+  left: 0;
+}
+
+@media only screen and (max-width: 1844px) {
+  .main-column {
+    width: 90vw;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #app-nav {
+    background-color: rgb(185, 185, 255);
+  }
+  .main-column {
+    width: 100vw;
+  }
+}
+
+@media only screen and (max-width: 725) {
+  .main-column {
+    display: block;
+  }
 }

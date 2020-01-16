@@ -1,10 +1,8 @@
 import SubmitComment from "./SubmitComment";
 import { getArticleComments, deleteById } from "../api";
-import Voter from "./Voter";
 import { UserContext } from "../contexts/UserContext";
 
 import React, { Component } from "react";
-import DeleteButton from "./DeleteButton";
 import CommentCard from "./CommentCard";
 
 class CommentList extends Component {
@@ -19,7 +17,6 @@ class CommentList extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.article_id !== this.props.article_id) {
-      console.log("updating!");
       this.fetchComments();
     }
   }
@@ -34,7 +31,15 @@ class CommentList extends Component {
         <p>Comments:</p>
         <ul>
           {comments.map((comment, index) => {
-            return <CommentCard comment={comment} index={index} user={user} />;
+            return (
+              <CommentCard
+                comment={comment}
+                index={index}
+                user={user}
+                key={comment.comment_id}
+                removeComment={this.removeComment}
+              />
+            );
           })}
         </ul>
       </>

@@ -6,45 +6,23 @@ import Welcome from "./components/Welcome";
 import ArticlesList from "./components/ArticlesList";
 import ErrorPage from "./components/ErrorPage";
 import UserContextProvider from "./contexts/UserContext";
-
-export function useWindowSize() {
-  function getSize() {
-    return {
-      width: window.innerWidth,
-      height: window.innerHeight
-    };
-  }
-
-  const [windowSize, setWindowSize] = useState(getSize);
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowSize(getSize());
-    }
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return windowSize;
-}
+import WindowContextProvider from "./contexts/WindowContext";
 
 function App() {
-  console.log("whole app rendering...!");
+  // console.log("whole app rendering...!", useWindowSize());
   return (
-    <div className="App">
-      <UserContextProvider>
-        <Header />
-        <main>
+    <WindowContextProvider>
+      <div className="App">
+        <UserContextProvider>
+          <Header />
           <Router className="main-column">
             <Welcome path="/" />
             <ArticlesList path="/articles/*" />
             <ErrorPage default />
           </Router>
-        </main>
-      </UserContextProvider>
-    </div>
+        </UserContextProvider>
+      </div>
+    </WindowContextProvider>
   );
 }
 

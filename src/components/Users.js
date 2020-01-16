@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getAllUsers } from "../api";
 import BackButton from "./BackButton";
 import UserCard from "./UserCard";
+import { useWindowSize } from "../App";
 
 class Users extends Component {
   state = {
