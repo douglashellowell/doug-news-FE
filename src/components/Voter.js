@@ -8,18 +8,34 @@ class Voter extends Component {
   render() {
     const { target, id, votes, disabled } = this.props;
     const { castVote } = this.state;
+    const upvoted = castVote === 1;
+    const downvoted = castVote === -1;
+    const novote = castVote === 0;
+
     if (disabled) return null;
     return (
       <div className="voter-container">
-        <i className="fas fa-caret-up" onClick={() => this.castVote(1)}></i>
+        <i
+          className={`fas fa-caret-up${upvoted ? " upvoted" : ""}`}
+          onClick={() => this.castVote(1)}
+        ></i>
         <p>{votes + castVote}</p>
-        <i className="fas fa-caret-down" onClick={() => this.castVote(-1)}></i>
+        <i
+          className={`fas fa-caret-down${downvoted ? " downvoted" : ""}`}
+          onClick={() => this.castVote(-1)}
+        ></i>
       </div>
     );
   }
 
   castVote = vote => {
-    this.setState({ castVote: vote });
+    const { castVote } = this.state;
+    if (castVote === vote) {
+      this.setState({ castVote: 0 });
+      vote *= -1;
+    } else {
+      this.setState({ castVote: vote });
+    }
     const { target, id } = this.props;
     api
       .patchVote(target, id, vote)

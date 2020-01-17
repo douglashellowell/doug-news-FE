@@ -5,7 +5,7 @@ const Nav = () => {
   return (
     <nav id="app-nav">
       <Link to="/articles">
-        <button className="nav-btn">What's New</button>
+        <button className="nav-btn">Articles</button>
       </Link>
       <Link to="/articles/topics">
         <button className="nav-btn">Topics</button>

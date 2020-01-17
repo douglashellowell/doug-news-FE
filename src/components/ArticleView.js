@@ -3,6 +3,7 @@ import { getSingleArticle } from "../api";
 import CommentList from "./CommentList";
 import SubmitComment from "./SubmitComment";
 import BackButton from "./BackButton";
+import Loading from "./Loading";
 
 class ArticleView extends Component {
   state = {
@@ -29,7 +30,7 @@ class ArticleView extends Component {
     } = this.state;
     const { mobileView } = this.props;
     if (isNaN(+this.props.article_id)) return <p>Needs a number!</p>;
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <Loading />;
     return (
       <>
         <div

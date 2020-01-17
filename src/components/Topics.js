@@ -3,6 +3,7 @@ import { getTopics } from "../api";
 import BackButton from "./BackButton";
 import { WindowContext } from "../contexts/WindowContext";
 import { Link } from "@reach/router";
+import Loading from "./Loading";
 
 class Topics extends Component {
   state = {
@@ -18,7 +19,7 @@ class Topics extends Component {
   render() {
     const { topics, isLoading } = this.state;
     const { setFilter, mobileView } = this.props;
-    if (isLoading) return <p>Loading.....</p>;
+    if (isLoading) return <Loading />;
     return (
       <div
         className={`topic-list-container${
@@ -29,10 +30,9 @@ class Topics extends Component {
         <ul id="topic-list">
           {topics.map(topic => {
             return (
-              <Link to="/articles">
+              <Link to="/articles" key={topic.slug}>
                 <li
                   className="topic-card"
-                  key={topic.slug}
                   onClick={() => {
                     setFilter("topic", topic.slug);
                   }}

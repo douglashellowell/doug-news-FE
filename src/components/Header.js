@@ -7,18 +7,25 @@ const Header = () => {
   return (
     <UserContext.Consumer>
       {context => {
-        const { user, setLoggedInUser } = context;
+        const { users, setLoggedInUser, currentUser } = context;
         return (
           <>
             <header id="app-header">
               <Link to="/">
-                <h1 id="header-logo">doug-news</h1>
+                <h1 id="app-logo">doug-news</h1>
               </Link>
               <section id="logged-in-user">
-                <button onClick={() => setLoggedInUser("weegembump")}>
+                <select
+                  onChange={({ target: { value } }) => setLoggedInUser(value)}
+                >
+                  {users.map(user => {
+                    return <option key={user.username}>{user.username}</option>;
+                  })}
+                </select>
+                {/* <button onClick={() => setLoggedInUser("weegembump")}>
                   log in as weegembump
-                </button>
-                <p>{user}</p>
+                </button>*/}
+                <p>{currentUser}</p>
                 <div id="logged-in-user-pic"></div>
               </section>
             </header>

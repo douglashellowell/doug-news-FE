@@ -3,7 +3,6 @@ import Voter from "./Voter";
 
 const CommentCard = ({ comment, index, user, removeComment }) => {
   const { body, author, created_at, votes, comment_id } = comment;
-  console.log(removeComment);
   return (
     <li className="comment-card" key={comment_id}>
       <div className="comment-sidebar">

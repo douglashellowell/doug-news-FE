@@ -71,3 +71,12 @@ export const getAllUsers = async () => {
   } = await apiRequest.get("/users");
   return users;
 };
+
+export const getUserImg = async username => {
+  const {
+    data: {
+      user: { avatar_url }
+    }
+  } = await apiRequest.get(`users/${username}`);
+  return avatar_url;
+};

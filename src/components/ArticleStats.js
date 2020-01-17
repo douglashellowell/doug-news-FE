@@ -3,16 +3,6 @@ import { getStats } from "../utils/getStats";
 
 import { Pie } from "react-chartjs-2";
 
-// const data = {
-//   labels: ["Red", "Blue", "Yellow"],
-//   datasets: [
-//     {
-//       data: [300, 50, 100],
-//       backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-//       hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
-//     }
-//   ]
-// };
 class ArticleStats extends Component {
   state = {
     data: {
@@ -40,30 +30,34 @@ class ArticleStats extends Component {
   };
 
   componentDidMount() {
+    console.log("ArticleStats ~~~ Mounting");
     // const stats = getStats(this.props.articles);
     // console.log(stats);
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.articles != this.props.articles) {
-      console.log("updating!");
+    // console.log("ArticleStats ~~~~ updating");
+    // console.log(prevProps.articles);
+    // console.log(this.props.articles);
+    if (prevProps.articles !== this.props.articles) {
       const stats = getStats(this.props.articles);
       this.setState(currentState => {
         const newState = { ...currentState };
+        // console.log("newstate --->", newState);
         newState.data.labels = Object.keys(stats);
         newState.data.datasets[0].data = Object.values(stats);
-        return { data: { ...newState } };
+        return { ...currentState };
       });
     }
   }
   render() {
-    console.log("rendering stats!");
-    const {
-      data: { data }
-    } = this.state;
+    // console.log("ArticleStats ~~~ Rendering");
+    // console.log(this.state);
+    const { data } = this.state;
+    const { filter } = this.props;
     return (
       <div>
-        <h2>Users talking about this....</h2>
+        <h2>Article Count for: {filter} </h2>
         <Pie data={data} />
       </div>
     );

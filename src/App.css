@@ -187,6 +187,15 @@ a {
   line-height: 2rem;
 }
 
+#filtered-by-text {
+  text-align: center;
+  font-size: 20px;
+}
+
+#category-text {
+  color: #666666;
+}
+
 .article-view-title {
   font-family: "Ibarra Real Nova", serif;
   font-size: 3rem;
@@ -240,14 +249,33 @@ a {
   background-color: rgb(231, 195, 188);
 }
 
+.upvoted {
+  color: greenyellow;
+  background-color: darkgreen;
+}
+
+.downvoted {
+  color: rgb(255, 71, 47);
+  background-color: darkred;
+}
+
+#user-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
 .user-card {
   border: 1px solid black;
   width: 90%;
   margin: 10px;
   padding: 1rem;
   line-height: 0.3rem;
-  display: grid;
-  grid-template-columns: 4rem 1fr;
+  border-radius: 0.5em;
+  /* flex-grow: 1; */
+  min-width: 10rem;
 }
 .user-card img {
   grid-column: 1;
@@ -264,6 +292,13 @@ a {
 }
 
 .article-view-mobile {
+  background-color: antiquewhite;
+  position: absolute;
+  z-index: 1;
+  left: 0px;
+}
+
+.user-list-mobile {
   background-color: antiquewhite;
   position: absolute;
   z-index: 1;
@@ -302,5 +337,62 @@ a {
 @media only screen and (max-width: 725) {
   .main-column {
     display: block;
+  }
+
+  #app-nav {
+    height: 2rem;
+  }
+
+  #app-header {
+    height: 3rem;
+  }
+
+  #app-logo {
+    font-size: 20px;
+  }
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.loading {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.loading div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: rgb(94, 85, 85);
+  animation: loading 1s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.loading div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.loading div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.loading div:nth-child(3) {
+  left: 56px;
+  animation-delay: -0s;
+}
+@keyframes loading {
+  0% {
+    top: 8px;
+    height: 64px;
+    background-color: white;
+  }
+  50%,
+  100% {
+    top: 24px;
+    height: 32px;
   }
 }

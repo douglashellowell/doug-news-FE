@@ -1,16 +1,24 @@
 import React from "react";
+import { Link } from "@reach/router";
 
 const UserCard = props => {
-  const { username, name, avatar_url } = props.user;
+  const {
+    user: { username, name, avatar_url },
+    setFilter
+  } = props;
   return (
     <li className="user-card">
-      <img
-        src={avatar_url}
-        alt={`${username}s profile picture`}
-        className="profile-pic-med"
-      />
-      <h4 className="user-card-username">{username}</h4>
-      <p className="user-card-name">{name}</p>
+      <Link to="/articles">
+        <div onClick={() => setFilter("author", username)}>
+          <img
+            src={avatar_url}
+            alt={`${username}s profile picture`}
+            className="profile-pic-med"
+          />
+          <h4 className="user-card-username">{username}</h4>
+          <p className="user-card-name">{name}</p>
+        </div>
+      </Link>
     </li>
   );
 };

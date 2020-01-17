@@ -18,7 +18,7 @@ const ArticleCard = props => {
   // const { user } = props;
   return (
     <UserContext.Consumer>
-      {({ user }) => {
+      {({ currentUser }) => {
         return (
           <li className="article-card">
             <div className="article-card-sidebar">
@@ -27,7 +27,7 @@ const ArticleCard = props => {
                   votes={votes}
                   id={article_id}
                   target={"articles"}
-                  disabled={user === author}
+                  disabled={currentUser === author}
                 />
               </div>
               <div>
