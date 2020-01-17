@@ -13,7 +13,6 @@ class UserContextProvider extends Component {
     this.getAvailableUsers();
   }
   render() {
-    console.log('rendering!');
     return (
       <UserContext.Provider
         value={{ ...this.state, setLoggedInUser: this.setLoggedInUser }}
@@ -24,17 +23,13 @@ class UserContextProvider extends Component {
   }
 
   getAvailableUsers = () => {
-    console.log("getting users for log in!");
     api.getAllUsers().then(users => {
       this.setState({ users });
     });
   };
 
   setLoggedInUser = username => {
-    console.log("setting user for log in!");
-    this.setState({ currentUser: username }, () => {
-      console.log(this.state);
-    });
+    this.setState({ currentUser: username }, () => {});
   };
 }
 

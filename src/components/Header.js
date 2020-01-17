@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <UserContext.Consumer>
       {context => {
-        const { users, setLoggedInUser, currentUser } = context;
+        const { users, setLoggedInUser } = context;
         return (
           <>
             <header id="app-header">
@@ -22,10 +22,7 @@ const Header = () => {
                     return <option key={user.username}>{user.username}</option>;
                   })}
                 </select>
-                {/* <button onClick={() => setLoggedInUser("weegembump")}>
-                  log in as weegembump
-                </button>*/}
-                <p>{currentUser}</p>
+
                 <div id="logged-in-user-pic"></div>
               </section>
             </header>

@@ -12,7 +12,7 @@ const UserCard = props => {
         <div onClick={() => setFilter("author", username)}>
           <img
             src={avatar_url}
-            alt={`${username}s profile picture`}
+            alt={`${username}s profile`}
             className="profile-pic-med"
           />
           <h4 className="user-card-username">{username}</h4>

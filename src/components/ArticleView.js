@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { getSingleArticle } from "../api";
 import CommentList from "./CommentList";
-import SubmitComment from "./SubmitComment";
 import BackButton from "./BackButton";
 import Loading from "./Loading";
+import ErrorPage from "./NotFoundErrorPage";
 
 class ArticleView extends Component {
   state = {
     article: {},
     comments: [],
     isLoading: true,
+    notFound: false,
     mobile: true
   };
 
@@ -26,11 +27,13 @@ class ArticleView extends Component {
   render() {
     const {
       article: { topic, title, author, created_at, body, article_id },
-      isLoading
+      isLoading,
+      notFound
     } = this.state;
     const { mobileView } = this.props;
     if (isNaN(+this.props.article_id)) return <p>Needs a number!</p>;
     if (isLoading) return <Loading />;
+    if (notFound) return <ErrorPage />;
     return (
       <>
         <div
@@ -61,10 +64,10 @@ class ArticleView extends Component {
   fetchArticleWithComments = () => {
     getSingleArticle(this.props.article_id)
       .then(article => {
-        this.setState({ article, isLoading: false }, () => {});
+        this.setState({ article, isLoading: false, notFound: false }, () => {});
       })
       .catch(err => {
-        console.dir(err);
+        this.setState({ isLoading: false, notFound: true });
       });
   };
 }

@@ -29,21 +29,13 @@ class ArticleStats extends Component {
     }
   };
 
-  componentDidMount() {
-    console.log("ArticleStats ~~~ Mounting");
-    // const stats = getStats(this.props.articles);
-    // console.log(stats);
-  }
+  componentDidMount() {}
 
   componentDidUpdate(prevProps) {
-    // console.log("ArticleStats ~~~~ updating");
-    // console.log(prevProps.articles);
-    // console.log(this.props.articles);
     if (prevProps.articles !== this.props.articles) {
       const stats = getStats(this.props.articles);
       this.setState(currentState => {
         const newState = { ...currentState };
-        // console.log("newstate --->", newState);
         newState.data.labels = Object.keys(stats);
         newState.data.datasets[0].data = Object.values(stats);
         return { ...currentState };
@@ -51,8 +43,6 @@ class ArticleStats extends Component {
     }
   }
   render() {
-    // console.log("ArticleStats ~~~ Rendering");
-    // console.log(this.state);
     const { data } = this.state;
     const { filter } = this.props;
     return (

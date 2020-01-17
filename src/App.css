@@ -356,6 +356,8 @@ a {
   display: flex;
   justify-content: center;
   margin: 2rem;
+  background-color: white;
+  height: 100%;
 }
 
 .loading {

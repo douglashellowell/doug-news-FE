@@ -6,11 +6,10 @@ class Voter extends Component {
     castVote: 0
   };
   render() {
-    const { target, id, votes, disabled } = this.props;
+    const { votes, disabled } = this.props;
     const { castVote } = this.state;
     const upvoted = castVote === 1;
     const downvoted = castVote === -1;
-    const novote = castVote === 0;
 
     if (disabled) return null;
     return (
@@ -37,15 +36,9 @@ class Voter extends Component {
       this.setState({ castVote: vote });
     }
     const { target, id } = this.props;
-    api
-      .patchVote(target, id, vote)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(err => {
-        console.log(err);
-        this.setState({ castVote: 0 });
-      });
+    api.patchVote(target, id, vote).catch(err => {
+      this.setState({ castVote: 0 });
+    });
   };
 }
 

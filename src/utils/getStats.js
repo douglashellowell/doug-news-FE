@@ -1,5 +1,4 @@
 export const getStats = articles => {
-  console.log("getting stats....");
   const result = {};
 
   articles.forEach(article => {

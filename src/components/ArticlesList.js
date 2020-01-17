@@ -8,6 +8,7 @@ import Topics from "./Topics";
 import ArticleStats from "./ArticleStats";
 import Users from "./Users";
 import Loading from "./Loading";
+import ErrorPage from "./NotFoundErrorPage";
 
 class ArticlesList extends Component {
   state = {
@@ -16,36 +17,34 @@ class ArticlesList extends Component {
     category: undefined,
     filter: undefined,
     sort_by: undefined,
+    error: false,
     isLoading: true
   };
   static contextType = WindowContext;
   componentDidMount() {
-    console.log("mounting list");
     this.fetchArticles();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("checkingupdate list");
     const { sort_by, category, filter } = this.state;
     const diffCategory = category !== prevState.category;
     const diffFilter = filter !== prevState.filter;
     const diffSort_by = sort_by !== prevState.sort_by;
-    console.log(diffCategory, diffFilter, diffSort_by);
     if (diffCategory || diffFilter || diffSort_by) {
-      console.log("updating list (if block!)");
       this.fetchArticles(sort_by, category, filter);
     }
   }
 
   render() {
-    const { articles, isLoading, category, filter, order } = this.state;
-    const { height, width } = this.context;
+    const { articles, isLoading, filter, error } = this.state;
+    const { width } = this.context;
     const mobileView = width < 725;
-    console.log("rendering list!");
     return (
       <>
         {isLoading ? (
           <Loading />
+        ) : error ? (
+          <ErrorPage />
         ) : (
           <div
             className={`article-list${
@@ -64,10 +63,6 @@ class ArticlesList extends Component {
               <option>votes</option>
               <option>comment_count</option>
             </select>
-            {/* {anyFilters && (
-              <button onClick={() => this.setFilter()}>remove filter</button>
-            )} */}
-
             <ul id="article-ul">
               {articles.map(article => {
                 return (
@@ -79,9 +74,9 @@ class ArticlesList extends Component {
         )}
         <Router>
           <ArticleView path=":article_id" mobileView={mobileView} />
-          {/* {!mobileView && (
-            <ArticleStats default articles={articles} filter={filter} />
-          )} */}
+          {!mobileView && (
+            <ArticleStats path="/" articles={articles} filter={filter} />
+          )}
           <Topics
             path="/topics"
             setFilter={this.setFilter}
@@ -92,6 +87,7 @@ class ArticlesList extends Component {
             mobileView={mobileView}
             setFilter={this.setFilter}
           />
+          <ErrorPage default />
         </Router>
       </>
     );
@@ -104,10 +100,10 @@ class ArticlesList extends Component {
   fetchArticles = (sort_by, category, filter) => {
     getArticles(sort_by, category, filter)
       .then(articles => {
-        this.setState({ articles, isLoading: false });
+        this.setState({ articles, isLoading: false, error: false });
       })
       .catch(err => {
-        console.dir(err);
+        this.setState({ isLoading: false, error: true });
       });
   };
 }
