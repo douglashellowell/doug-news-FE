@@ -1,7 +1,7 @@
 import React from "react";
 import Voter from "./Voter";
 
-const CommentCard = ({ comment, index, user, removeComment }) => {
+const CommentCard = ({ comment, index, currentUser, removeComment }) => {
   const { body, author, created_at, votes, comment_id } = comment;
   return (
     <li className="comment-card" key={comment_id}>
@@ -20,7 +20,7 @@ const CommentCard = ({ comment, index, user, removeComment }) => {
         </p>
       </div>
       <p className="comment-body">{body}</p>
-      {user === author && (
+      {currentUser === author && (
         <button onClick={() => removeComment(comment_id, "comments", index)}>
           delete
         </button>

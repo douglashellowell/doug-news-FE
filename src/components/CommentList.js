@@ -24,7 +24,7 @@ class CommentList extends Component {
   render() {
     const { comments } = this.state;
     const { article_id } = this.props;
-    const { user } = this.context;
+    const { currentUser } = this.context;
     return (
       <>
         <SubmitComment pushComment={this.pushComment} article_id={article_id} />
@@ -35,7 +35,7 @@ class CommentList extends Component {
               <CommentCard
                 comment={comment}
                 index={index}
-                user={user}
+                currentUser={currentUser}
                 key={comment.comment_id}
                 removeComment={this.removeComment}
               />
