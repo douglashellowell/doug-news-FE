@@ -7,11 +7,11 @@ class SubmitComment extends Component {
   static contextType = UserContext;
   render() {
     const { bodyInput, showForm } = this.state;
-    const { user } = this.context;
+    const { currentUser } = this.context;
     return (
       <>
         <button onClick={this.toggleShowForm}>{`${
-          showForm ? "Cancel" : `Post comment as ${user}`
+          showForm ? "Cancel" : `Post comment as ${currentUser}`
         }`}</button>
         {showForm && (
           <form onSubmit={this.SubmitComment}>
@@ -41,11 +41,11 @@ class SubmitComment extends Component {
   SubmitComment = event => {
     event.preventDefault();
     const { bodyInput } = this.state;
-    const { user } = this.context;
+    const { currentUser } = this.context;
     if (bodyInput) {
       this.setState({ bodyInput: "" });
       const { article_id } = this.props;
-      insertComment(article_id, { username: user, body: bodyInput })
+      insertComment(article_id, { username: currentUser, body: bodyInput })
         .then(comment => {
           this.props.pushComment(comment);
         })
