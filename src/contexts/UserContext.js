@@ -24,7 +24,7 @@ class UserContextProvider extends Component {
 
   getAvailableUsers = () => {
     api.getAllUsers().then(users => {
-      this.setState({ users });
+      this.setState({ users, currentUser: users[0].username });
     });
   };
 
