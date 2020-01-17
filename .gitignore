@@ -28,3 +28,5 @@ lorem.html
 /src/dummydata
 Plan.md
 react-project-checklist.md
+# Local Netlify folder
+.netlify

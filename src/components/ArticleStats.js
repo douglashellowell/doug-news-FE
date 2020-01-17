@@ -6,10 +6,10 @@ import { Pie } from "react-chartjs-2";
 class ArticleStats extends Component {
   state = {
     data: {
-      labels: ["Red", "Blue", "Yellow"],
+      labels: [],
       datasets: [
         {
-          data: [300, 50, 100],
+          data: [],
           backgroundColor: [
             "#39b54a",
             "#ead637",
@@ -29,10 +29,21 @@ class ArticleStats extends Component {
     }
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log("mounting...");
+    const stats = getStats(this.props.articles);
+    this.setState({
+      data: {
+        labels: Object.keys(stats),
+        datasets: [{ data: Object.values(stats) }]
+      }
+    });
+  }
 
   componentDidUpdate(prevProps) {
+    console.log("checking update...");
     if (prevProps.articles !== this.props.articles) {
+      console.log("updating!!");
       const stats = getStats(this.props.articles);
       this.setState(currentState => {
         const newState = { ...currentState };
