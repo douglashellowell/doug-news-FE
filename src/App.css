@@ -373,7 +373,7 @@ form {
 }
 
 .article-list-mobile {
-  background-color: rgb(232, 255, 247);
+  background-color: rgb(255, 255, 255);
   position: absolute;
   z-index: 0;
   left: 0;
@@ -423,8 +423,9 @@ form {
 .loading {
   display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 100%;
+  height: 100%;
+  background-color: white;
 }
 .loading div {
   display: inline-block;
