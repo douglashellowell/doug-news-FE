@@ -16,6 +16,7 @@ class SubmitComment extends Component {
         >{`${showForm ? "Cancel" : `Post comment as ${currentUser}`}`}</button>
         {showForm && (
           <form onSubmit={this.SubmitComment}>
+            awd
             <textarea
               type="text"
               name="bodyInput"
@@ -42,12 +43,13 @@ class SubmitComment extends Component {
     event.preventDefault();
     const { bodyInput } = this.state;
     const { currentUser } = this.context;
+    const { pushComment } = this.props;
     if (bodyInput) {
-      this.setState({ bodyInput: "" });
+      this.setState({ bodyInput: "", showForm: false });
       const { article_id } = this.props;
       insertComment(article_id, { username: currentUser, body: bodyInput })
         .then(comment => {
-          this.props.pushComment(comment);
+          pushComment(comment);
         })
         .catch(err => {
           console.dir(err);
