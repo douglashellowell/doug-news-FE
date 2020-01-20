@@ -4,6 +4,7 @@ import BackButton from "./BackButton";
 import { WindowContext } from "../contexts/WindowContext";
 import { Link } from "@reach/router";
 import Loading from "./Loading";
+import TopicCard from "./TopicCard";
 
 class Topics extends Component {
   state = {
@@ -29,20 +30,7 @@ class Topics extends Component {
         <BackButton />
         <ul id="topic-list">
           {topics.map(topic => {
-            return (
-              <Link to="/articles" key={topic.slug}>
-                <li
-                  className="topic-card"
-                  onClick={() => {
-                    setFilter("topic", topic.slug);
-                  }}
-                >
-                  <h3>{topic.slug}</h3>
-                  <p>{topic.description}</p>
-                  <p>there are {topic.count} articles for this topic</p>
-                </li>
-              </Link>
-            );
+            return <TopicCard topic={topic} setFilter={setFilter} />;
           })}
         </ul>
       </div>

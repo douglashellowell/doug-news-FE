@@ -6,6 +6,15 @@ body {
   /* font-family: "Ibarra Real Nova", serif; */
 }
 
+select {
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: #666666;
+  padding: 6px 24px;
+}
+
 li,
 ul {
   list-style: none;
@@ -38,8 +47,8 @@ a {
 }
 
 #logged-in-user-pic {
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   background-color: black;
   margin-left: 20px;
@@ -52,7 +61,6 @@ a {
   cursor: pointer;
   color: #666666;
   padding: 6px 24px;
-  height: inherit;
 }
 .nav-btn:hover {
   background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
@@ -95,9 +103,10 @@ a {
   height: 100vh;
   min-width: 370px;
   padding: 1rem;
+  background-color: rgb(231, 231, 231);
 }
 .article-card {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 1rem 0 1rem 0;
   display: grid;
   grid-template-columns: 3rem 1fr;
@@ -107,6 +116,7 @@ a {
     "sidebar title"
     "sidebar info";
   border-radius: 0.5em;
+  background-color: white;
 }
 
 .article-secondary-text {
@@ -119,11 +129,12 @@ a {
   width: 100%;
   height: 20px;
   text-indent: 10px;
+  padding: 3px 0 0 0;
 }
 
 .article-card-sidebar {
   grid-area: sidebar;
-  background-color: #ebebeb;
+  background-color: #a8a8a8;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -132,17 +143,19 @@ a {
 
 .article-card-title {
   grid-area: title;
+  padding-left: 10px;
 }
 
 .article-card-posted-info {
   grid-area: info;
   line-height: 0.3rem;
+  padding-left: 10px;
 }
 
 .toggle-show-true {
-  box-shadow: inset 0px 0px 15px 3px #23395e;
-  background: linear-gradient(to bottom, #2e466e 5%, #415989 100%);
-  background-color: #2e466e;
+  box-shadow: inset 0px 0px 15px 3px #455c83;
+  /* background: linear-gradient(to bottom, #6380b3 5%, #9fb0d1 100%); */
+  background-color: #4b6da8;
   border: 1px solid #1f2f47;
   cursor: pointer;
   color: #ffffff;
@@ -152,12 +165,12 @@ a {
 
 .toggle-show-false {
   background: #54688f;
-  background-color: #6880a8;
+  background-color: #94b1e4;
   border: 1px solid #1f2f47;
   cursor: pointer;
-  color: #ffffff;
+  color: #000000;
   padding: 6px 13px;
-  text-shadow: 0px 1px 0px #263666;
+  /* text-shadow: 0px 1px 0px #263666; */
 }
 
 #submit-comment-container {
@@ -171,9 +184,9 @@ form {
 }
 
 #submit-comment-field {
-  width: 100%;
+  width: calc(100% - 1.15rem);
   height: 200px;
-  padding: 0;
+  padding: 0.5rem;
   margin: 0;
   border: 1px solid black;
   resize: none;
@@ -184,9 +197,8 @@ form {
   background-color: #85abec;
   border: 1px solid #1f2f47;
   cursor: pointer;
-  color: #ffffff;
+  color: #000000;
   padding: 6px 13px;
-  text-shadow: 0px 1px 0px #263666;
 }
 
 .comment-card {
@@ -223,7 +235,7 @@ form {
 }
 
 .remove-comment {
-  background-color: #d0451b;
+  background-color: #c07660;
   border-radius: 3px;
   border: 1px solid #942911;
   display: inline-block;
@@ -232,6 +244,15 @@ form {
 
   text-decoration: none;
   text-shadow: 0px 1px 0px #854629;
+}
+
+.back-button {
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: #666666;
+  padding: 6px 24px;
 }
 
 .article-view-container {
@@ -257,6 +278,10 @@ form {
 .article-view-title {
   font-family: "Ibarra Real Nova", serif;
   font-size: 3rem;
+}
+
+.topic-list-container {
+  padding: 15px;
 }
 
 #topic-list {

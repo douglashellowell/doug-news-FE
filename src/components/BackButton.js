@@ -4,7 +4,9 @@ import { Link } from "@reach/router";
 const BackButton = () => {
   return (
     <Link to="/articles">
-      <button>back</button>
+      <button className="back-button">
+        <i class="fas fa-caret-left"></i> back
+      </button>
     </Link>
   );
 };
