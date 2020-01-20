@@ -30,7 +30,6 @@ class ArticleStats extends Component {
   };
 
   componentDidMount() {
-    console.log("mounting...");
     const stats = getStats(this.props.articles);
     this.setState({
       data: {
@@ -41,9 +40,7 @@ class ArticleStats extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("checking update...");
     if (prevProps.articles !== this.props.articles) {
-      console.log("updating!!");
       const stats = getStats(this.props.articles);
       this.setState(currentState => {
         const newState = { ...currentState };

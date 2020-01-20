@@ -9,26 +9,26 @@ class SubmitComment extends Component {
     const { bodyInput, showForm } = this.state;
     const { currentUser } = this.context;
     return (
-      <>
-        <button onClick={this.toggleShowForm}>{`${
-          showForm ? "Cancel" : `Post comment as ${currentUser}`
-        }`}</button>
+      <div id="submit-comment-container">
+        <button
+          className={showForm ? "toggle-show-true" : "toggle-show-false"}
+          onClick={this.toggleShowForm}
+        >{`${showForm ? "Cancel" : `Post comment as ${currentUser}`}`}</button>
         {showForm && (
           <form onSubmit={this.SubmitComment}>
-            <label>
-              Body:
-              <input
-                type="text"
-                name="bodyInput"
-                onChange={this.handleChange}
-                value={bodyInput}
-                id="submit-comment-field"
-              />
-            </label>
-            <button type="submit">Submit</button>
+            <textarea
+              type="text"
+              name="bodyInput"
+              onChange={this.handleChange}
+              value={bodyInput}
+              id="submit-comment-field"
+            />
+            <button id="submit-comment-button" type="submit">
+              Submit
+            </button>
           </form>
         )}
-      </>
+      </div>
     );
   }
 

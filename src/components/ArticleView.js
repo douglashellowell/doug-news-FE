@@ -36,7 +36,7 @@ class ArticleView extends Component {
     if (notFound) return <ErrorPage />;
     return (
       <>
-        <div
+        <article
           className={`article-view-container${
             mobileView ? " article-view-mobile" : ""
           }`}
@@ -56,7 +56,7 @@ class ArticleView extends Component {
           </div>
           <p className="article-body">{body}</p>
           <CommentList article_id={article_id} />
-        </div>
+        </article>
       </>
     );
   }

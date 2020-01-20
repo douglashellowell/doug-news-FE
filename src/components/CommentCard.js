@@ -7,7 +7,9 @@ const CommentCard = ({ comment, index, currentUser, removeComment }) => {
     <li className="comment-card" key={comment_id}>
       <div className="comment-sidebar">
         <div className="comment-user-img" />
-        <Voter votes={votes} id={comment_id} target={"comments"} />
+        {currentUser !== author && (
+          <Voter votes={votes} id={comment_id} target={"comments"} />
+        )}
       </div>
       <div className="comment-user">
         <p>
@@ -21,7 +23,10 @@ const CommentCard = ({ comment, index, currentUser, removeComment }) => {
       </div>
       <p className="comment-body">{body}</p>
       {currentUser === author && (
-        <button onClick={() => removeComment(comment_id, "comments", index)}>
+        <button
+          className="remove-comment"
+          onClick={() => removeComment(comment_id, "comments", index)}
+        >
           delete
         </button>
       )}

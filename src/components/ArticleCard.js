@@ -15,7 +15,6 @@ const ArticleCard = props => {
     article_id
   } = props.article;
 
-  // const { user } = props;
   return (
     <UserContext.Consumer>
       {({ currentUser }) => {
