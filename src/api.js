@@ -5,7 +5,7 @@ const apiRequest = axios.create({
 
 export const getArticles = async (order, category, filter) => {
   const { data } = await apiRequest.get(`/articles`, {
-    params: { sort_by: order, [category]: filter }
+    params: { sort_by: order, [category]: filter, limit: 100 }
   });
   return data.articles;
 };
