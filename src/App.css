@@ -352,14 +352,14 @@ form {
 }
 
 .article-view-mobile {
-  background-color: antiquewhite;
+  background-color: rgb(255, 255, 255);
   position: absolute;
   z-index: 1;
   left: 0px;
 }
 
 .user-list-mobile {
-  background-color: antiquewhite;
+  background-color: rgb(255, 255, 255);
   position: absolute;
   z-index: 1;
   left: 0px;
@@ -394,13 +394,13 @@ form {
   }
 }
 
-@media only screen and (max-width: 725) {
-  .main-column {
+@media only screen and (max-width: 725px) {
+  /* .main-column {
     display: block;
-  }
+  } */
 
   #app-nav {
-    height: 2rem;
+    height: 1rem;
   }
 
   #app-header {
@@ -408,7 +408,15 @@ form {
   }
 
   #app-logo {
-    font-size: 20px;
+    font-size: 1rem;
+  }
+
+  .topic-card {
+    width: 80vw;
+  }
+
+  #topic-list {
+    padding: 5px;
   }
 }
 

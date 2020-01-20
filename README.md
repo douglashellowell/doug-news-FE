@@ -3,6 +3,7 @@
 This is a front-end React app for my news app built on a node.js/express backend server
 
 You can view this project live at: www.doug-news.netlify.com
+
 The backend API can be found at: www.doug-new.herokuapp.com
 
 ---
@@ -14,7 +15,9 @@ The backend API can be found at: www.doug-new.herokuapp.com
 ### Prerequisites:
 
 [Node.js](https://nodejs.org/en/)
+
 [git](https://git-scm.com/)
+
 [npm](https://www.npmjs.com/)
 
 To install download the repo and install with:
