@@ -51,18 +51,20 @@ class ArticlesList extends Component {
               mobileView ? " article-list-mobile" : ""
             }`}
           >
-            <p id="filtered-by-text">
-              <span id="category-text">{`${filter || "All"}`}</span> Articles
-            </p>
-            <select
-              onChange={({ target: { value } }) =>
-                this.setState({ sort_by: value })
-              }
-            >
-              <option>created_at</option>
-              <option>votes</option>
-              <option>comment_count</option>
-            </select>
+            <div id="sidebar-title">
+              <p id="filtered-by-text">
+                <span id="category-text">{`${filter || "All"}`}</span> Articles
+              </p>
+              <select
+                onChange={({ target: { value } }) =>
+                  this.setState({ sort_by: value })
+                }
+              >
+                <option>created_at</option>
+                <option>votes</option>
+                <option>comment_count</option>
+              </select>
+            </div>
             <ul id="article-ul">
               {articles.map(article => {
                 return (
