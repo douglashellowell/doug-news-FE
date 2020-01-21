@@ -178,6 +178,7 @@ a {
 .toggle-show-true {
   box-shadow: inset 0px 0px 15px 3px #455c83;
   /* background: linear-gradient(to bottom, #6380b3 5%, #9fb0d1 100%); */
+  border-radius: 1em 1em 0 0;
   background-color: #4b6da8;
   border: 1px solid #1f2f47;
   cursor: pointer;
@@ -189,7 +190,8 @@ a {
 .toggle-show-false {
   background: #54688f;
   background-color: #94b1e4;
-  border: 1px solid #1f2f47;
+  border-radius: 1em;
+  border: 1px solid #94b1e4;
   cursor: pointer;
   color: #000000;
   padding: 6px 13px;
@@ -219,15 +221,21 @@ form {
   background: #54688f;
   background-color: #85abec;
   border: 1px solid #1f2f47;
+  border-radius: 0 0 1em 1em;
   cursor: pointer;
   color: #000000;
+
   padding: 6px 13px;
 }
 
 .comment-card {
-  border: 1px solid grey;
+  border: 1px solid rgb(219, 219, 219);
   margin: 0.5rem;
+  border-radius: 0.5em;
   display: grid;
+  -webkit-box-shadow: -1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: -1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: -1px 2px 4px 0px rgba(0, 0, 0, 0.25);
   grid-template-columns: 4em 1fr;
   grid-template-rows: 3em 1fr;
   grid-template-areas:
@@ -246,8 +254,9 @@ form {
 }
 .comment-sidebar {
   grid-area: sidebar;
-  background-color: rgb(253, 211, 211);
+  background-color: rgb(255, 228, 228);
   display: flex;
+  border-radius: 0.5em 0 0 0.5em;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -336,12 +345,15 @@ form {
 }
 
 .topic-card {
-  border: 1px black solid;
+  border: 1px solid rgb(199, 199, 199);
   border-radius: 0.5em;
   flex-grow: 1;
   margin: 10px;
   padding: 1rem;
   min-width: 10rem;
+  -webkit-box-shadow: -1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: -1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: -1px 2px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .voter-container {
@@ -392,13 +404,15 @@ form {
 }
 
 .user-card {
-  border: 1px solid black;
+  border: 1px solid rgb(199, 199, 199);
   width: 90%;
   margin: 10px;
   padding: 1rem;
   line-height: 0.3rem;
   border-radius: 0.5em;
-  /* flex-grow: 1; */
+  -webkit-box-shadow: -1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: -1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: -1px 2px 4px 0px rgba(0, 0, 0, 0.25);
   min-width: 10rem;
 }
 .user-card img {

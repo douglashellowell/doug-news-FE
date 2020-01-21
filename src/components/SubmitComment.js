@@ -22,6 +22,7 @@ class SubmitComment extends Component {
               onChange={this.handleChange}
               value={bodyInput}
               id="submit-comment-field"
+              placeholder="enter comment here"
             />
             <button id="submit-comment-button" type="submit">
               Submit
