@@ -36,7 +36,7 @@ class ArticlesList extends Component {
   }
 
   render() {
-    const { articles, isLoading, filter, error } = this.state;
+    const { articles, isLoading, filter, error, category } = this.state;
     const { width } = this.context;
     const mobileView = width < 725;
     return (
@@ -75,17 +75,19 @@ class ArticlesList extends Component {
         <Router>
           <ArticleView path=":article_id" mobileView={mobileView} />
           {!mobileView && (
-            <ArticleStats path="/" articles={articles} filter={filter} />
+            <ArticleStats path="/" category={category} filter={filter} />
           )}
           <Topics
             path="/topics"
             setFilter={this.setFilter}
             mobileView={mobileView}
+            filter={filter}
           />
           <Users
             path="/users"
             mobileView={mobileView}
             setFilter={this.setFilter}
+            filter={filter}
           />
           <ErrorPage default />
         </Router>

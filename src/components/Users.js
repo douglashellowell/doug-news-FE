@@ -16,7 +16,7 @@ class Users extends Component {
 
   render() {
     const { users, isLoading } = this.state;
-    const { setFilter, mobileView } = this.props;
+    const { setFilter, mobileView, filter } = this.props;
     if (isLoading) return <Loading />;
     return (
       <>
@@ -34,6 +34,7 @@ class Users extends Component {
                   setFilter={setFilter}
                   user={user}
                   key={user.username}
+                  filter={filter}
                 />
               );
             })}

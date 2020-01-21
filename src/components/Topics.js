@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { getTopics } from "../api";
 import BackButton from "./BackButton";
 import { WindowContext } from "../contexts/WindowContext";
-import { Link } from "@reach/router";
 import Loading from "./Loading";
 import TopicCard from "./TopicCard";
 
@@ -19,7 +18,7 @@ class Topics extends Component {
 
   render() {
     const { topics, isLoading } = this.state;
-    const { setFilter, mobileView } = this.props;
+    const { setFilter, mobileView, filter } = this.props;
     if (isLoading) return <Loading />;
     return (
       <div
@@ -29,8 +28,15 @@ class Topics extends Component {
       >
         <BackButton />
         <ul id="topic-list">
-          {topics.map(topic => {
-            return <TopicCard topic={topic} setFilter={setFilter} />;
+          {topics.map((topic, index) => {
+            return (
+              <TopicCard
+                topic={topic}
+                setFilter={setFilter}
+                key={index}
+                filter={filter}
+              />
+            );
           })}
         </ul>
       </div>

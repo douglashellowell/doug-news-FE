@@ -219,11 +219,14 @@ form {
   padding: 0.5rem 0.5rem 0 0.5rem;
 }
 .comment-user {
+  padding: 0rem 0.5rem 0 0.5rem;
+  line-height: 5px;
+
   grid-area: username;
 }
 .comment-sidebar {
   grid-area: sidebar;
-  background-color: rgb(253, 247, 211);
+  background-color: rgb(253, 211, 211);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

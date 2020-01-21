@@ -1,13 +1,26 @@
 import axios from "axios";
+import { getStats } from "./utils/getStats";
 const apiRequest = axios.create({
   baseURL: "https://doug-news.herokuapp.com/api"
 });
 
 export const getArticles = async (order, category, filter) => {
   const { data } = await apiRequest.get(`/articles`, {
-    params: { sort_by: order, [category]: filter, limit: 100 }
+    params: { sort_by: order, [category]: filter }
   });
   return data.articles;
+};
+
+export const getArticleStats = async (category, filter) => {
+  const {
+    data: { articles }
+  } = await apiRequest.get("/articles", {
+    params: {
+      [category]: filter,
+      limit: Infinity
+    }
+  });
+  return getStats(articles);
 };
 
 export const getSingleArticle = async article_id => {

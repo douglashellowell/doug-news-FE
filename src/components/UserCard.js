@@ -4,12 +4,16 @@ import { Link } from "@reach/router";
 const UserCard = props => {
   const {
     user: { username, name, avatar_url },
-    setFilter
+    setFilter,
+    filter
   } = props;
+
+  const isFiltered = filter === username;
+
   return (
     <li className="user-card">
       <Link to="/articles">
-        <div onClick={() => setFilter("author", username)}>
+        <div onClick={() => !isFiltered && setFilter("author", username)}>
           <img
             src={avatar_url}
             alt={`${username}s profile`}

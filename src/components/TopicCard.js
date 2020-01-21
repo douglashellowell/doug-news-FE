@@ -1,13 +1,19 @@
 import React from "react";
 import { Link } from "@reach/router";
 
-const TopicCard = ({ topic: { slug, description, count }, setFilter }) => {
+const TopicCard = ({
+  topic: { slug, description, count },
+  setFilter,
+  filter
+}) => {
+  const isFiltered = filter === slug;
+
   return (
     <Link to="/articles" key={slug}>
       <li
         className="topic-card"
         onClick={() => {
-          setFilter("topic", slug);
+          !isFiltered && setFilter("topic", slug);
         }}
       >
         <h3>{slug}</h3>

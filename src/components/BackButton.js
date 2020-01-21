@@ -5,7 +5,7 @@ const BackButton = () => {
   return (
     <Link to="/articles">
       <button className="back-button">
-        <i class="fas fa-caret-left"></i> back
+        <i className="fas fa-caret-left"></i> back
       </button>
     </Link>
   );

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { getStats } from "../utils/getStats";
-
+import * as api from "../api";
 import { Pie } from "react-chartjs-2";
 
 class ArticleStats extends Component {
@@ -30,26 +29,33 @@ class ArticleStats extends Component {
   };
 
   componentDidMount() {
-    const stats = getStats(this.props.articles);
-    this.setState({
-      data: {
-        labels: Object.keys(stats),
-        datasets: [{ data: Object.values(stats) }]
-      }
+    const { category, filter } = this.props;
+    api.getArticleStats(category, filter).then(stats => {
+      this.setState({
+        data: {
+          labels: Object.keys(stats),
+          datasets: [{ data: Object.values(stats) }]
+        }
+      });
     });
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.articles !== this.props.articles) {
-      const stats = getStats(this.props.articles);
-      this.setState(currentState => {
-        const newState = { ...currentState };
-        newState.data.labels = Object.keys(stats);
-        newState.data.datasets[0].data = Object.values(stats);
-        return { ...currentState };
+    const { category, filter } = this.props;
+    const diffCategory = category !== prevProps.category;
+    const diffFilter = filter !== prevProps.filter;
+    if (diffCategory | diffFilter) {
+      api.getArticleStats(category, filter).then(stats => {
+        this.setState(currentState => {
+          const newState = { ...currentState };
+          newState.data.labels = Object.keys(stats);
+          newState.data.datasets[0].data = Object.values(stats);
+          return { ...currentState };
+        });
       });
     }
   }
+
   render() {
     const { data } = this.state;
     const { filter } = this.props;
