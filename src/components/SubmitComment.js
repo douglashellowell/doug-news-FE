@@ -16,7 +16,6 @@ class SubmitComment extends Component {
         >{`${showForm ? "Cancel" : `Post comment as ${currentUser}`}`}</button>
         {showForm && (
           <form onSubmit={this.SubmitComment}>
-            awd
             <textarea
               type="text"
               name="bodyInput"
