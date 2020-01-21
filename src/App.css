@@ -342,6 +342,7 @@ form {
   justify-content: space-evenly;
   padding: 2rem;
   flex-wrap: wrap;
+  overflow-y: scroll;
 }
 
 .topic-card {
@@ -401,6 +402,7 @@ form {
   justify-content: space-evenly;
   padding: 2rem;
   flex-wrap: wrap;
+  overflow-y: scroll;
 }
 
 .user-card {
