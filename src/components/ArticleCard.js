@@ -14,7 +14,7 @@ const ArticleCard = props => {
     votes,
     article_id
   } = props.article;
-
+  const datePosted = Date(created_at).slice(0,24)
   return (
     <UserContext.Consumer>
       {({ currentUser }) => {
@@ -46,8 +46,7 @@ const ArticleCard = props => {
               </p>
               <p>
                 <span className="article-secondary-text">at:</span>
-                {created_at}
-                {/* TODO: make util to translate date */}
+        {' '}{datePosted}
               </p>
             </div>
           </li>

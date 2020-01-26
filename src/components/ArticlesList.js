@@ -18,7 +18,9 @@ class ArticlesList extends Component {
     filter: undefined,
     sort_by: undefined,
     error: false,
-    isLoading: true
+    errorMsg: '',
+    isLoading: true,
+
   };
   static contextType = WindowContext;
   componentDidMount() {
@@ -36,7 +38,7 @@ class ArticlesList extends Component {
   }
 
   render() {
-    const { articles, isLoading, filter, error, category } = this.state;
+    const { articles, isLoading, filter, error, errorMsg, category } = this.state;
     const { width } = this.context;
     const mobileView = width < 725;
     return (
@@ -44,7 +46,7 @@ class ArticlesList extends Component {
         {isLoading ? (
           <Loading />
         ) : error ? (
-          <ErrorPage />
+          <ErrorPage err={errorMsg}/>
         ) : (
           <div
             className={`article-list${
@@ -107,7 +109,7 @@ class ArticlesList extends Component {
         this.setState({ articles, isLoading: false, error: false });
       })
       .catch(err => {
-        this.setState({ isLoading: false, error: true });
+        this.setState({ isLoading: false, error: true, errorMsg: err.msg });
       });
   };
 }

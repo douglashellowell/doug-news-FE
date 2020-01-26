@@ -31,7 +31,7 @@ class ArticleView extends Component {
       notFound
     } = this.state;
     const { mobileView } = this.props;
-    if (isNaN(+this.props.article_id)) return <p>Needs a number!</p>;
+    if (isNaN(+this.props.article_id)) return <ErrorPage err={'Invalid Article ID, must be a number'} />
     if (isLoading) return <Loading />;
     if (notFound) return <ErrorPage />;
     return (

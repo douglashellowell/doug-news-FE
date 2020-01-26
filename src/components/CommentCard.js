@@ -3,6 +3,7 @@ import Voter from "./Voter";
 
 const CommentCard = ({ comment, index, currentUser, removeComment }) => {
   const { body, author, created_at, votes, comment_id } = comment;
+  const datePosted = Date(created_at).slice(0,24)
   return (
     <li className="comment-card" key={comment_id}>
       <div className="comment-sidebar">
@@ -18,7 +19,7 @@ const CommentCard = ({ comment, index, currentUser, removeComment }) => {
         </p>
         <p>
           <span className="article-secondary-text">at:</span>
-          {created_at}
+        {' '}{datePosted}
         </p>
       </div>
       <p className="comment-body">{body}</p>
